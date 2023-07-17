@@ -1,13 +1,13 @@
 # 使用utf8编码
 $OutputEncoding = [console]::InputEncoding = [console]::OutputEncoding = New-Object System.Text.UTF8Encoding
 
-oh-my-posh init pwsh --config C:\Users\Fighoh\Tools\themes\kushal.omp.json | Invoke-Expression
+oh-my-posh init pwsh --config C:\Users\Fighoh\Tools\themes\kushal.omp.json | Invoke-Expression # 找到你的oh-my-posh把themes放在哪里了选择一个喜欢的主题安装就行
 
 function et {exit}
 
 
 function set_proxy_variable {
-	Set-Item Env:http_proxy "http://127.0.0.1:7890"  # 代理地址
+	Set-Item Env:http_proxy "http://127.0.0.1:7890"  # 代理地址选择你自己的代理端口
 	Set-Item Env:https_proxy "http://127.0.0.1:7890" # 代理地址
 }
 
