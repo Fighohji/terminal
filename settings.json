@@ -119,9 +119,9 @@
     "autoHideWindow": false,
     "copyFormatting": "none",
     "copyOnSelect": false,
-    "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+    "defaultProfile": "{574e775e-4f2a-5b96-ac1e-a2962a402336}", //填写你自己原来的那串代码
     "disableAnimations": false,
-    "initialPosition": "200,50",
+    "initialPosition": "200,50", //设置terminal初始位置
     "launchMode": "focus",
     "multiLinePasteWarning": false,
     "newTabMenu": 
@@ -140,7 +140,7 @@
             "experimental.retroTerminalEffect": false,
             "font": 
             {
-                "face": "JetBrainsMono Nerd Font",
+                "face": "JetBrainsMono Nerd Font",//填入你刚才下载的字体
                 "size": 13.0,
                 "weight": "normal"
             },
@@ -183,7 +183,7 @@
                 "source": "Windows.Terminal.VisualStudio"
             },
             {
-                "commandline": "\"C:\\Program Files\\PowerShell\\7\\pwsh.exe\" -nologo",
+                "commandline": "\"C:\\Program Files\\PowerShell\\7\\pwsh.exe\" -nologo", //将前面路径改成你的powershell的路径
                 "guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
                 "hidden": false,
                 "name": "PowerShell",
