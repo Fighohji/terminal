@@ -1,13 +1,14 @@
 # 使用utf8编码
 $OutputEncoding = [console]::InputEncoding = [console]::OutputEncoding = New-Object System.Text.UTF8Encoding
 
-oh-my-posh init pwsh --config C:\Users\Fighoh\Tools\themes\kushal.omp.json | Invoke-Expression # 找到你的oh-my-posh把themes放在哪里了选择一个喜欢的主题安装就行
+oh-my-posh init pwsh --config C:\Users\Fighoh\Tools\themes\kushal.omp.json | Invoke-Expression
 
 function et {exit}
 
+Set-TerminalIconsTheme #terminalIcon
 
 function set_proxy_variable {
-	Set-Item Env:http_proxy "http://127.0.0.1:7890"  # 代理地址选择你自己的代理端口
+	Set-Item Env:http_proxy "http://127.0.0.1:7890"  # 代理地址
 	Set-Item Env:https_proxy "http://127.0.0.1:7890" # 代理地址
 }
 
@@ -32,46 +33,9 @@ Set-PSReadLineKeyHandler -Chord "Ctrl+RightArrow" -Function ForwardWord
 Remove-Alias ls -Force
 Remove-Alias sl -Force
 
-function Color-List($str) {
-    $regex_opts = ([System.Text.RegularExpressions.RegexOptions]::IgnoreCase-bor [System.Text.RegularExpressions.RegexOptions]::Compiled)
-    $fore = $Host.UI.RawUI.ForegroundColor
-    $compressed = New-Object System.Text.RegularExpressions.Regex('\.(zip|tar|gz|rar|jar|war|7z)$', $regex_opts)
-    $executable = New-Object System.Text.RegularExpressions.Regex('\.(exe|bat|cmd|py|ps1|psm1|vbs|rb|reg|sh|zsh)$', $regex_opts)
-    $code_files = New-Object System.Text.RegularExpressions.Regex('\.(ini|csv|log|xml|yml|json|java|c|cpp|css|sass|js|ts|jsx|tsx|vue|cpp|py)$', $regex_opts)
-    $head_files = New-Object System.Text.RegularExpressions.Regex('\.(h)$', $regex_opts)
-    $itemList = @()
-    Invoke-Expression ("Get-ChildItem" + " " + $str) | ForEach-Object {
-        $item = New-Object object
-        if ($_.GetType().Name -eq 'DirectoryInfo') 
-        {
-            $item | Add-Member NoteProperty name ("`e[34m" + $_.name) # 目录名称蓝色
-        }
-        elseif ($compressed.IsMatch($_.Name)) 
-        {
-            $item | Add-Member NoteProperty name ("`e[31m" + $_.name) # 压缩文件红色
-        }
-        elseif ($executable.IsMatch($_.Name))
-        {
-            $item | Add-Member NoteProperty name ("`e[36m" + $_.name) # 可执行文件青色
-        }
-        elseif ($code_files.IsMatch($_.Name))
-        {
-            $item | Add-Member NoteProperty name ("`e[33m" + $_.name) # 代码文件黄色
-        }
-        elseif ($head_files.IsMatch($_.Name))
-        {
-            $item | Add-Member NoteProperty name ("`e[32m" + $_.name) # 头文件绿色
-        }
-        else
-        {
-            $item | Add-Member NoteProperty name ("`e[37m" + $_.name) # 其他文件默认白色
-        } 
-        $itemList += $item
-    }
-    echo $itemList | Format-Wide -AutoSize # 格式化输出
-}
-function ls {Color-List "-Exclude .*"}
-function la {Color-List "$args"}
+function ls {Get-ChildItem | Format-Wide}
+function lsall {Get-ChildItem}
 function cj {cd ..}
 function cl {clear}
+
 
