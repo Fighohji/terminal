@@ -5,7 +5,7 @@ oh-my-posh init pwsh --config C:\Users\Fighoh\Tools\themes\kushal.omp.json | Inv
 
 function et {exit}
 
-Set-TerminalIconsTheme #terminalIcon
+Set-TerminalIconsTheme #terminalIcon 安装Install-Module -Name Terminal-Icons -Repository PSGallery 导入 Import-Module -Name Terminal-Icons
 
 function set_proxy_variable {
 	Set-Item Env:http_proxy "http://127.0.0.1:7890"  # 代理地址
